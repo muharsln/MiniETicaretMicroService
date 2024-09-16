@@ -1,0 +1,23 @@
+Postgre Docker Install and Run Code
+------------------------------------
+docker run --name postgres -e POSTGRES_PASSWORD=1 -e POSTGRES_DB=shoppingcartsdb -d -p 5432:5432 postgres
+
+PostgreSQL Connection String:
+------------------------------------
+Development:
+Host=localhost;Port=5432;Database=shoppingcartsdb;Username=postgres;Password=1;
+
+Production:
+Host=host.docker.internal;Port=5432;Database=shoppingcartsdb;Username=postgres;Password=1;
+
+DockerCLI Commands:
+------------------------------------
+docker network create my-network
+
+docker build -t products .
+
+docker build -t carts .
+
+docker run -d --name products --network my-network -p 5001:8080 -e ASPNETCORE_URLS=http://+:8080 products
+
+docker run -d --name carts --network my-network -p 5002:8080 -e ASPNETCORE_URLS=http://+:8080 carts
