@@ -20,6 +20,10 @@ docker build -t carts .
 docker build -t orders .
 ```
 
+```bash
+docker build -t gateway .
+```
+
 ## Run Commands
 
 ```bash
@@ -32,4 +36,8 @@ docker run -d --name carts --network my-network -p 5002:8080 -e ASPNETCORE_URLS=
 
 ```bash
 docker run -d --name orders --network my-network -p 5003:8080 -e ASPNETCORE_URLS=http://+:8080 orders
+```
+
+```bash
+docker run -d --name gateway --network my-network -p 5000:8080 -e ASPNETCORE_URLS=http://+:8080 gateway
 ```
